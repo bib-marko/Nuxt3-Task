@@ -1,27 +1,11 @@
-<!-- <template>
-	<v-app>
-		<v-main>
-			<slot />
-		</v-main>
-	</v-app>
-</template>
 <script setup lang="ts">
-// import { Head } from '#components'
+import { THEME_KEY } from 'vue-echarts'
 
-
-</script> -->
-
-<script setup lang="ts">
-import { computed, provide } from 'vue'
-// import { useTheme } from 'vuetify/lib/framework.mjs';
-// import { useRoute } from 'nuxt'
-// import { useHead, useSeoMeta } from '@nuxtjs/composition-api'
-
-// const theme = useTheme()
-// provide(
-//   THEME_KEY,
-//   computed(() => (theme.current.value.dark ? 'dark' : undefined)),
-// )
+const theme = useTheme()
+provide(
+  THEME_KEY,
+  computed(() => (theme.current.value.dark ? 'dark' : undefined)),
+)
 const route = useRoute()
 const title = computed(() => {
   return route.meta?.title || route.matched[0].meta?.title || ''
@@ -47,9 +31,9 @@ useSeoMeta({
     <AppBar />
     <!-- https://github.com/vuetifyjs/vuetify/issues/15202 -->
     <v-main style="--v-layout-top: 64px; --v-layout-bottom: 32px">
-      <slot />
+      <NuxtPage />
     </v-main>
-    <!-- <AppFooter /> -->
+    <AppFooter />
   </v-app>
 </template>
 

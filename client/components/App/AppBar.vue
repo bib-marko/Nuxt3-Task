@@ -16,17 +16,14 @@ const breadcrumbs = computed(() => {
       to: r.path,
     }))
 })
-
 </script>
 
 <template>
   <v-app-bar flat>
     <v-app-bar-nav-icon @click="drawer = !drawer" />
-    <v-breadcrumbs></v-breadcrumbs>
+    <v-breadcrumbs :items="breadcrumbs"> </v-breadcrumbs>
     <v-spacer />
     <div id="app-bar"></div>
-    <client-only>
-    </client-only>
     <v-btn
       icon
       href="https://github.com/kingyue737/vitify-nuxt"
@@ -36,15 +33,13 @@ const breadcrumbs = computed(() => {
     >
       <v-icon size="30" icon="mdi-github"></v-icon>
     </v-btn>
+	<v-btn>Hello</v-btn>
     <v-menu location="bottom">
       <template #activator="{ props: menu }">
         <v-tooltip location="bottom">
           <template #activator="{ props: tooltip }">
             <v-btn icon large v-bind="mergeProps(menu, tooltip)" class="ml-1">
               <v-icon icon="mdi-account-circle" size="36" />
-              <!-- <v-avatar v-else color="primary" size="36">
-                <v-img :src="`https://github.com/${user!.login}.png`" />
-              </v-avatar> -->
             </v-btn>
           </template>
           <span>{{ 'User' }}</span>
@@ -56,11 +51,6 @@ const breadcrumbs = computed(() => {
           prepend-icon="mdi-github"
           href="/api/auth/github"
         ></v-list-item>
-        <!-- <v-list-item
-          title="Logout"
-          prepend-icon="mdi-logout"
-        >
-        </v-list-item> -->
       </v-list>
     </v-menu>
   </v-app-bar>
