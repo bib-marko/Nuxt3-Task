@@ -33,8 +33,8 @@
 					</v-col>
 
 					<v-col
-					cols="2"
-					offset="30"
+						cols="2"
+						offset="30"
 					>
 					<v-sheet class="pa-2 ma-4">
 						<v-btn-toggle
@@ -202,7 +202,6 @@ onMounted(() => {
 	state.loading = true;
 	setTimeout(()=>{
 		state.pages = data.value?.launches
-		console.log(state.pages)
 		state.loading = false;
     }, 2000)
 })
