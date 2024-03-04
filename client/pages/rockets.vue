@@ -14,29 +14,14 @@
 			</v-col>
 		</v-row>
 
-		<v-card v-show="!state.loading && rockets.length != 0" class="mx-auto my-12" max-width="374" v-for="(rocket, index) in rockets" :key="index">
-			<v-card-title>{{ rocket.name }}</v-card-title>
-			<v-card-text>
-				<v-row align="center" class="mx-0">
-					<div class="grey--text mb-4"><b>First Flight:</b> {{ rocket.first_flight }}</div>
-				</v-row>
-				<div>
-					<b>Description:</b>
-					{{ rocket.description.substr(0, 180) + '...' }}
-				</div>
-			</v-card-text>
-		</v-card>
-
-		<v-card
-			v-if="state.noRecord"
-			class="mx-auto my-12"
-			max-width="374"
-			elevation="0"
-		>
-		<v-sheet class="ma-2 pa-2">
-			<img src="../images/no_record_found.jpg" alt="No Record Found" style="max-width: 100%;" />
-		</v-sheet>
-	</v-card>
+		<Card
+			:data="rockets"
+			:stored-data="store.listOfFavorite"
+			:loading="state.loading"
+			:cardLoading="state.cardLoading"
+			:isNoRecord="state.noRecord"
+			cardType="rockets"
+		/>
 	</v-row>
 </v-container>
 </template>
@@ -126,3 +111,21 @@ onMounted(() => {
 })
 
 </script>
+
+<style scoped>
+.desc{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	-webkit-line-clamp: 6;
+}
+
+.tbl{
+	margin-bottom: 1em;
+	width: 100%;
+}
+
+tr{
+	padding: -5em;
+}
+</style>

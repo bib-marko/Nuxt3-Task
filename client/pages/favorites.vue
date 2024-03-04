@@ -14,8 +14,20 @@
 			</v-col>
 		</v-row>
 
+		<Card
+			:data="visiblePages"
+			:stored-data="store.listOfFavorite"
+			:loading="state.loading"
+			:cardLoading="state.cardLoading"
+			:loadCard="state.loadCard"
+			:isNoRecord="state.noRecord"
+			@addingFavorite="addingFavorite"
+			@removeFavorites="removeFavorites"
+			cardType="launches"
+		/>
 
-		<v-card v-show="!state.loading && store.listOfFavorite.length != 0" class="mx-auto my-12"
+
+		<!-- <v-card v-show="!state.loading && store.listOfFavorite.length != 0" class="mx-auto my-12"
 			max-width="374"
 			:loading="state.loadCard == index ? state.cardLoading : null"
 			v-for="(rocket, index) in visiblePages"
@@ -24,12 +36,27 @@
 				<v-card-title>{{ rocket.rocket.rocket_name }}</v-card-title>
 				<v-card-text>
 					<v-row align="center" class="mx-0">
-						<div class="grey--text"><b>Launch Date:</b> {{ rocket.launch_date_local 	}}</div>
-						<div class="grey--text mb-4"><b>Mission Name:</b> {{ rocket.mission_name 	}}</div>
+						<v-table class="tbl">
+							<tbody>
+							  <tr>
+								<td><b>Launch Date:</b></td>
+								<td> {{ rocket.launch_date_local }}</td>
+							  </tr>
+							  <tr>
+								<td><b>Mission Name:</b></td>
+								<td> {{ rocket.mission_name }}</td>
+							  </tr>
+							  <tr>
+								<td><b>Launch Site:</b></td>
+								<td> {{ rocket.launch_site || '-' }}</td>
+							  </tr>
+							</tbody>
+						</v-table>
 					</v-row>
-					<div>
+					<v-divider></v-divider>
+					<div class="mt-3">
 						<b>Details:</b>
-						{{ rocket.details }}
+					 	<p class="desc">{{ rocket.details }}</p>
 					</div>
 					<v-card-actions>
 						<v-spacer></v-spacer>
@@ -52,7 +79,7 @@
 			<v-sheet class="ma-2 pa-2">
 				<img src="../images/no_record_found.jpg" alt="No Record Found" style="max-width: 100%;" />
 			</v-sheet>
-		</v-card>
+		</v-card> -->
 
 
 	</v-row>
@@ -154,3 +181,12 @@ onMounted(() => {
 })
 
 </script>
+
+<style scoped>
+.desc{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	-webkit-line-clamp: 6;
+}
+</style>

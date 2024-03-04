@@ -61,7 +61,6 @@
 
 							<v-btn value="justify"  @click="sortDataByType(2)">
 								<span class="hidden-sm-and-down"></span>
-
 								<v-icon end>
 									mdi-sort-descending
 								</v-icon>
@@ -80,34 +79,17 @@
 					</v-col>
 				</v-row>
 
-					<v-card v-else
-						class="mx-auto my-12"
-						max-width="374"
-						:loading="state.loadCard == index ? state.cardLoading : null"
-						v-for="(launch, index) in (visiblePages.length == 0 ? state.pages : visiblePages)"
-						:key="index" >
-						<v-card-title>{{ launch.mission_name }}</v-card-title>
-						<v-card-text>
-							<v-row align="center" class="mx-0">
-								<div class="grey--text"><b>Launch Date:</b> {{ launch.launch_date_local }}</div>
-								<div class="grey--text mb-4"><b>Rocket Name:</b> {{ launch.rocket.rocket_name }}</div>
-							</v-row>
-							<div>
-								<div class="grey--text mb-4"><b>Launch Site:</b> {{ launch.launch_site || '-' }}</div>
-								<b>Details:</b>
-								{{ launch.details == null ? '-' : launch.details.length > 100 ? `${launch.details.slice(0, 180).trim()}...` : launch.details || '-'}}
-							</div>
-							<v-card-actions>
-								<v-spacer></v-spacer>
-								<v-btn size="small"
-									color="red-darken-1"
-									variant="text"
-									:icon="validateIntoFavorite(launch) ? 'mdi-heart' : 'mdi-heart-outline'"
-									@click="validateIntoFavorite(launch) ? removeFavorites(launch, index) : addingFavorite(launch, index)" >
-								</v-btn>
-							</v-card-actions>
-						</v-card-text>
-					</v-card>
+				<Card
+					v-else
+					:data="visiblePages"
+					:storedData="store.listOfFavorite"
+					:loading="state.loading"
+					:isNoRecord="state.noRecord"
+					@addingFavorite="addingFavorite"
+					@removeFavorites="removeFavorites"
+					cardType="launches"
+				/>
+
 				</v-row>
 				<v-pagination
 					v-model="state.page"
@@ -161,6 +143,8 @@ const state: any = reactive({
     totalPerPage: 16,
     pages: [],
 
+	noRecord: false,
+
 })
 
 const visiblePages = computed(() =>
@@ -204,6 +188,8 @@ onMounted(() => {
 		state.pages = data.value?.launches
 		state.loading = false;
     }, 2000)
+
+	console.log(store.listOfFavorite)
 })
 
 const searchData = (value: any) => {
@@ -271,9 +257,13 @@ const removeFavorites = (data: any, index: number) => {
     }, 2000)
 }
 
-
-const validateIntoFavorite = (item: any) => {
-	return store.listOfFavorite.some((e: any) => e.mission_name === item.mission_name)
-}
-
 </script>
+
+<style scoped>
+.desc{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	-webkit-line-clamp: 6;
+}
+</style>
