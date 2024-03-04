@@ -1,18 +1,11 @@
 <script setup lang="ts">
-import { THEME_KEY } from 'vue-echarts'
-
-const theme = useTheme()
-provide(
-  THEME_KEY,
-  computed(() => (theme.current.value.dark ? 'dark' : undefined)),
-)
 const route = useRoute()
 const title = computed(() => {
   return route.meta?.title || route.matched[0].meta?.title || ''
 })
 useHead({
   title,
-  titleTemplate: (t) => (t ? `${t} | Vitify Admin` : 'Vitify Admin'),
+  titleTemplate: (t) => (t ? `${t} | Vuetify Admin` : 'Vuetify Admin'),
   htmlAttrs: { lang: 'en' },
   link: [{ rel: 'icon', href: '/favicon.ico' }],
 })

@@ -1,3 +1,26 @@
+<template>
+	<v-container fluid>
+	  <v-progress-linear  indeterminate v-show="state.loading"  color="indigo-darken-1"></v-progress-linear>
+	  <v-row>
+		<v-col
+		  v-for="(stat, index) in state.rocketList"
+		  :key="index"
+		  cols="12"
+		  sm="6"
+		  md="4"
+		  lg="2"
+		>
+		  <StatsCard
+			:title="stat.name"
+			:count="stat.count"
+		  >
+		  </StatsCard>
+		</v-col>
+	  </v-row>
+
+	</v-container>
+  </template>
+
 <script setup lang="ts">
 
 definePageMeta({
@@ -69,28 +92,6 @@ onMounted(() => {
 })
 
 </script>
-
-<template>
-  <v-container fluid>
-	<v-progress-linear  indeterminate v-show="state.loading"  color="indigo-darken-1"></v-progress-linear>
-    <v-row>
-      <v-col
-        v-for="(stat, index) in state.rocketList"
-        :key="index"
-        cols="12"
-        sm="6"
-        md="4"
-        lg="2"
-      >
-        <StatsCard
-          :title="stat.name"
-		  :count="stat.count"
-        >
-        </StatsCard>
-      </v-col>
-    </v-row>
-  </v-container>
-</template>
 
 <style scoped>
 .wrapper {

@@ -28,7 +28,7 @@ const title = computed(() => {
 })
 useHead({
   title,
-  titleTemplate: (t) => (t ? `${t} | Vitify Admin` : 'Vitify Admin'),
+  titleTemplate: (t) => (t ? `${t} | Vuetify Admin` : 'Vuetify Admin'),
   htmlAttrs: { lang: 'en' },
   link: [{ rel: 'icon', href: '/favicon.ico' }],
 })

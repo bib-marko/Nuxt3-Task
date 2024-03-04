@@ -27,15 +27,6 @@ const breadcrumbs = computed(() => {
     <div id="app-bar"></div>
     <client-only>
     </client-only>
-    <v-btn
-      icon
-      href="https://github.com/kingyue737/vitify-nuxt"
-      size="small"
-      class="ml-2"
-      target="_blank"
-    >
-      <v-icon size="30" icon="mdi-github"></v-icon>
-    </v-btn>
     <v-menu location="bottom">
       <template #activator="{ props: menu }">
         <v-tooltip location="bottom">

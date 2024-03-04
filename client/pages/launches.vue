@@ -84,6 +84,8 @@
 					:data="visiblePages"
 					:storedData="store.listOfFavorite"
 					:loading="state.loading"
+					:cardLoading="state.cardLoading"
+					:loadCard="state.loadCard"
 					:isNoRecord="state.noRecord"
 					@addingFavorite="addingFavorite"
 					@removeFavorites="removeFavorites"

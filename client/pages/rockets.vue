@@ -18,7 +18,8 @@
 			:data="rockets"
 			:stored-data="store.listOfFavorite"
 			:loading="state.loading"
-			:cardLoading="state.cardLoading"
+			:loadCard="state.loadCard || false"
+			:cardLoading="state.cardLoading  || false"
 			:isNoRecord="state.noRecord"
 			cardType="rockets"
 		/>
