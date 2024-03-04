@@ -42,9 +42,6 @@ const breadcrumbs = computed(() => {
           <template #activator="{ props: tooltip }">
             <v-btn icon large v-bind="mergeProps(menu, tooltip)" class="ml-1">
               <v-icon icon="mdi-account-circle" size="36" />
-              <!-- <v-avatar v-else color="primary" size="36">
-                <v-img :src="`https://github.com/${user!.login}.png`" />
-              </v-avatar> -->
             </v-btn>
           </template>
           <span>{{ 'User' }}</span>
@@ -54,13 +51,8 @@ const breadcrumbs = computed(() => {
         <v-list-item
           title="Login"
           prepend-icon="mdi-github"
-          href="/api/auth/github"
+          href=""
         ></v-list-item>
-        <!-- <v-list-item
-          title="Logout"
-          prepend-icon="mdi-logout"
-        >
-        </v-list-item> -->
       </v-list>
     </v-menu>
   </v-app-bar>

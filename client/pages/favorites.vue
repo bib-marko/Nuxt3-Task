@@ -29,7 +29,7 @@
 					</v-row>
 					<div>
 						<b>Details:</b>
-						{{ rocket.details.substr(0, 180) + '...' }}
+						{{ rocket.details }}
 					</div>
 					<v-card-actions>
 						<v-spacer></v-spacer>
